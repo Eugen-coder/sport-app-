@@ -29,6 +29,15 @@ export default function NavBar() {
       <Link href={"/products/server-version"} className="hover:text-amber-300">
         Product server
       </Link>
+      <Link href={"/products/create"} className="hover:text-amber-300">
+        Create Product
+      </Link>
+      <Link href={"/categories/create"} className="hover:text-amber-300">
+        Create category
+      </Link>
+      <Link href={"/categories"} className="hover:text-amber-300">
+        Categories
+      </Link>
       <ThemeToggler />
     </nav>
   );

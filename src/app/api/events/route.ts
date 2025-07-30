@@ -1,5 +1,6 @@
 import { db } from "@/db";
 import { eventsTable } from "@/db/schema";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
 
@@ -26,6 +27,11 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await getServerSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" });
+    }
+
     const body = await req.json();
     const newEvent = EventInsertSchema.parse(body);
     const [event] = await db.insert(eventsTable).values(newEvent).returning();
